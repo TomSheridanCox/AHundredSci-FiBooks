@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="jquery.tablesorter.min.js"></script> 
+		<script type="text/javascript">  
+			$(document).ready(function(){
+				$("#myTable").tablesorter({
+					headers: {
+						2: {
+							sorter: false
+						}
+					}			
+				}); 
+			});
+		</script> 
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+		<script type="text/javascript"charset="utf-8">
+		    d3.text("list2.csv", function(data) {
+			var parsedCSV = d3.csvParseRows(data);
+
+			var container = d3.select("#myTable")
+			    .append("tbody")
+
+			    .selectAll("tr")
+				.data(parsedCSV).enter()
+				.append("tr")
+
+			    .selectAll("td")
+				.data(function(d) { return d; }).enter()
+				.append("td")
+				.text(function(d) { return d; });
+		    });
+		</script>
+		<link rel="stylesheet" href="style.css"> 
+	</head>
+	<body>
+		<header>
+			A Hundred Sci-Fi Books
+			<p>A few years ago I copied a list of one hundred Sci-Fi books from <a href="http://scifilists.sffjazz.com/lists_books_rank1.html">here</a> and have read a few.</p>
+		
+		<table id="myTable" class="tablesorter">
+			 <thead>
+			<tr>
+				<th>Original Copied Rank</th>
+				<th>Author</th>
+				<th>Book Name</th>
+				<th>Year</th>
+				<th>My Score</th>
+			</tr>
+			</thead>
+		</table>
+	</body>
+</html>
