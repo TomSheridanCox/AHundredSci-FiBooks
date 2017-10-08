@@ -59,3 +59,6 @@ header p {
   width: 75%;
   margin-left:12.5%;
 }
+#errorMessage {
+	font-size: 8pt;
+}
